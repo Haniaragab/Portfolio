@@ -69,7 +69,7 @@ body.menu-open .menu .mi{opacity:1;transform:none;transition-delay:var(--d,0s),v
 .p2 .still{background:linear-gradient(160deg,#0e0e0e 20%,#3f3f3f 50%,#090909 80%)}
 .p3 .still{background:radial-gradient(ellipse at 70% 60%,#585858,#171717 55%,#000)}
 .clip{opacity:0;transition:opacity .6s ease;background:linear-gradient(110deg,#141414,#3a3a3a,#111,#2c2c2c,#0d0d0d);background-size:400% 100%;display:flex;align-items:center;justify-content:center}
-.proj.playing .clip{opacity:1;animation:pan 6s linear infinite}
+.proj.playing .clip{opacity:1;animation:pan 6s linear infinite}.proj video.pv{width:100%;height:100%;object-fit:cover;background:none;animation:none!important;display:block}
 @keyframes pan{from{background-position:0 0}to{background-position:100% 0}}
 .cap{max-width:24em;opacity:0;transform:translateY(10px);transition:opacity 1.1s ease .5s,transform 1.2s cubic-bezier(.2,.7,.2,1) .5s}
 .proj.in .cap{opacity:1;transform:none}
@@ -159,6 +159,7 @@ body.cv-open .cvm{opacity:1;visibility:visible;transition:opacity .5s}
 @media (max-width:760px){.a-intro,.cv{grid-template-columns:minmax(0,1fr)}.cgrid{grid-template-columns:minmax(0,1fr)}.a-photo{max-width:260px}.paper{max-width:420px}}
 
 
+.wframe{border:1px solid var(--line);background:#0b0b0b;max-width:1180px;margin:0 auto clamp(56px,9vh,100px)}.wbar{display:flex;align-items:center;gap:14px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:14px;color:var(--muted)}.wdots{display:flex;gap:6px}.wdots i{width:9px;height:9px;border-radius:50%;background:#333;display:block}.wurl{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.wbar a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--fg);white-space:nowrap}.wframe iframe{display:block;width:100%;height:min(78vh,820px);border:0;background:#fff}.wlist{max-width:860px}.wlist h2{font-weight:400;font-size:clamp(26px,2.6vw,36px);margin:0 0 16px}.wlist ul{list-style:none;margin:0;padding:0}.wlist li{padding:14px 0;border-bottom:1px solid var(--line);color:var(--soft);font-size:clamp(16px,1.3vw,19px);line-height:1.45}@media (max-width:560px){.wdots{display:none}.wframe iframe{height:72vh}}
 .catPg{display:none;padding:clamp(96px,16vh,150px) var(--pad) clamp(60px,10vh,110px)}
 .cat-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:clamp(48px,8vh,80px)}
 .cat-head h1{margin:0;font-size:clamp(40px,6vw,80px);font-weight:400;line-height:1}
@@ -530,7 +531,7 @@ body.plb-open #page{filter:blur(16px);opacity:.35}
 <div class="media"><div class="still" data-label="Project still"></div><div class="clip" data-label="Clip preview"></div></div>
 <div class="cap"><h3>Project two</h3><p class="role">Set design and costuming, 2024</p><p class="desc">A short line or two about the world you built for this project and the look you were going for.</p></div></a>
 <a class="proj p3" href="#project-three" data-go="Project three">
-<div class="media"><div class="still" data-label="Project still"></div><div class="clip" data-label="Clip preview"></div></div>
+<div class="media"><div class="still" data-label="Project still"></div></div>
 <div class="cap"><h3>Project three</h3><p class="role">Editor, 2024</p><p class="desc">A short line or two about the edit: its rhythm, its structure, or the story you shaped in the cut.</p></div></a>
 </section>
 </main>
@@ -612,6 +613,23 @@ body.plb-open #page{filter:blur(16px);opacity:.35}
 <div class="eb-mon" aria-live="polite"><button class="eb-scr" id="ebScr" type="button" aria-label="Open film"><div class="still" id="ebStill"></div><div class="clip" data-label="Clip preview"></div><span class="tag">Program</span></button>
 <div class="eb-info"><div><h3 id="ebT"></h3><p id="ebD"></p></div><button class="eb-open" id="ebOpen" type="button">See more</button></div></div>
 </div>
+</section>
+
+<section class="catPg" id="writePg" aria-labelledby="writeTitle">
+<div class="cat-head"><h1 id="writeTitle">Writing &amp; journalism</h1><p>Articles, essays and research on media, film and culture, from my blog Contemporary Media Studies.</p></div>
+<div class="wframe">
+<div class="wbar"><span class="wdots" aria-hidden="true"><i></i><i></i><i></i></span><span class="wurl">researchresonance.wordpress.com</span><a href="https://researchresonance.wordpress.com/" target="_blank" rel="noopener">Open in a new tab</a></div>
+<iframe id="wIf" title="Contemporary Media Studies, Hania Ragab's blog" data-src="https://researchresonance.wordpress.com/" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</div>
+<div class="wlist"><h2>Selected pieces</h2><ul>
+<li>How Until Dawn Turns Player Agency into Moral Antagonism: A Psychoanalytic Breakdown</li>
+<li>Morality, Panic, and the Psychology of Time in 60 Seconds!</li>
+<li>Preserving Artistic Activism in the Age of Censorship</li>
+<li>The Suppression of Activist Art &amp; A Decentralized Solution</li>
+<li>Art as Activism: The Power of Media Arts in Shaping Social Movements</li>
+<li>From Observer to Creator: Exploring Content Creation in the Rotten Mango Community</li>
+<li>Autoethnographic Exploration of “Rotten Mango”: Entertainment Podcasts and True Crime Discussion</li>
+</ul></div>
 </section>
 
 <section class="catPg" id="setPg" aria-labelledby="setTitle" hidden>
@@ -704,8 +722,9 @@ sig.complete?go():sig.addEventListener('load',go);
 const projs=[...document.querySelectorAll('.proj')];
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.25});
 projs.forEach(p=>io.observe(p));
-if(matchMedia('(hover:hover)').matches){projs.forEach(p=>{p.addEventListener('mouseenter',()=>p.classList.add('playing'));p.addEventListener('mouseleave',()=>p.classList.remove('playing'))})}
-else{const ap=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('playing',e.intersectionRatio>.6)),{threshold:[0,.6,1]});projs.forEach(p=>ap.observe(p))}
+const setPl=(p,on)=>{p.classList.toggle('playing',on);const v=p.querySelector('video.pv');if(v){if(on)v.play().catch(()=>{});else v.pause()}};
+if(matchMedia('(hover:hover)').matches){projs.forEach(p=>{p.addEventListener('mouseenter',()=>setPl(p,true));p.addEventListener('mouseleave',()=>setPl(p,false))})}
+else{const ap=new IntersectionObserver(es=>es.forEach(e=>setPl(e.target,e.intersectionRatio>.6)),{threshold:[0,.6,1]});projs.forEach(p=>ap.observe(p))}
 
 const mb=$('menuBtn'),menu=$('menu');menu.querySelectorAll('.mi').forEach((e,i)=>e.style.setProperty('--d',(.22+i*.07)+'s'));
 function setMenu(v){document.body.classList.toggle('menu-open',v);mb.setAttribute('aria-expanded',v);mb.setAttribute('aria-label',v?'Close menu':'Open menu');menu.setAttribute('aria-hidden',!v);if(v)setTimeout(()=>menu.querySelector('a').focus({preventScroll:true}),300)}
@@ -725,7 +744,7 @@ const filmsPg=$('filmsPg'),projPg=$('projPg');
 const RL={dir:'director',codir:'co-director',ad:'assistant director',cin:'cinematographer',ac:'assistant camera',edi:'editor',ae:'assistant editor'};
 const FG={dir:['dir','codir','ad'],cin:['cin','ac'],edi:['edi','ae']};
 const FILMS=[
-{t:'After, Not Again',imdb:true,aw:['Top 5 student-voted graduating films of 2026, UOWD'],y:'2026',g:'War drama',r:['dir','edi'],d:'A war drama.',ds:'A withdrawn soldier returns to his ruined homeland searching for a girl from his childhood, but a haunted woman he meets along the way sends him toward the city instead.',dfn:true,img:'img/ana_cover.jpg',yt:'R1iXXcOCA94',posters:['img/ana_p1.jpg','img/ana_p2.jpg'],
+{t:'After, Not Again',pv:'media/ana_war.mp4',imdb:true,aw:['Top 5 student-voted graduating films of 2026, UOWD'],y:'2026',g:'War drama',r:['dir','edi'],d:'A war drama.',ds:'A withdrawn soldier returns to his ruined homeland searching for a girl from his childhood, but a haunted woman he meets along the way sends him toward the city instead.',dfn:true,img:'img/ana_cover.jpg',yt:'R1iXXcOCA94',posters:['img/ana_p1.jpg','img/ana_p2.jpg'],
 bts:['img/ana_bts1.jpg','img/ana_bts2.jpg','img/ana_bts3.jpg','img/ana_bts4.jpg','img/ana_bts5.jpg','img/ana_bts6.jpg'],
 hls:[{t:'Opening sequence',src:'media/ana_opening2.mp4',poster:'img/ana_hl1.jpg'},{t:'War sequence',src:'media/ana_war.mp4',poster:'img/ana_hl2.jpg'},{t:'Village return',src:'media/ana_village.mp4',poster:'img/ana_hl3.jpg'},{t:'Noah’s objective',d:'Dialogue 1',src:'media/ana_dialogue1.mp4',poster:'img/ana_hl4.jpg'},{t:'Visual trauma',d:'Dialogue 2, The Woman',src:'media/ana_dialogue2.mp4',poster:'img/ana_hl5.jpg'}],
 stills:['img/ana_s1.jpg','img/ana_s2.jpg','img/ana_s3.jpg','img/ana_s4.jpg','img/ana_s5.jpg','img/ana_s6.jpg','img/ana_s7.jpg','img/ana_s8.jpg','img/ana_s9.jpg','img/ana_s10.jpg','img/ana_s11.jpg','img/ana_s12.jpg'],
@@ -741,7 +760,7 @@ cr:[['Directed by','Hania Ragab'],['Written by','Hania Ragab'],['Produced by','H
 const roles=f=>{const w=f.r.map(k=>RL[k]);const s=w.length>1?w.slice(0,-1).join(', ')+' and '+w[w.length-1]:w[0];return s[0].toUpperCase()+s.slice(1)};
 const EG=['linear-gradient(110deg,#0c0c0c,#3a3a3a 50%,#0c0c0c)','radial-gradient(ellipse at 35% 50%,#4f4f4f,#101010 60%)','linear-gradient(200deg,#2c2c2c,#060606)','radial-gradient(circle at 70% 40%,#555,#0d0d0d 60%)','linear-gradient(20deg,#0b0b0b,#2e2e2e 45%,#4a4a4a 55%,#0b0b0b)','radial-gradient(ellipse at 30% 40%,#4d4d4d,#141414 60%,#050505)'];
 const fbg=i=>FILMS[i].img?`url(${FILMS[i].img}) center/cover no-repeat`:EG[i%EG.length];
-document.querySelectorAll('.proj[data-film]').forEach(a=>{const i=+a.dataset.film,f=FILMS[i],s=a.querySelector('.still');if(f.img){s.style.background=`url(${f.img}) center/cover no-repeat`;s.classList.add('has-img')}a.querySelector('h3').textContent=f.t;a.querySelector('.role').textContent=`${roles(f)}, ${f.y}`;a.querySelector('.desc').textContent=f.ds||f.d;a.setAttribute('aria-label',`${f.t}, see the film`);a.addEventListener('click',e=>{e.preventDefault();openFilm(i)})});
+document.querySelectorAll('.proj[data-film]').forEach(a=>{const i=+a.dataset.film,f=FILMS[i],s=a.querySelector('.still');const cl=a.querySelector('.clip');if(cl){if(f.pv){const v=document.createElement('video');v.className='clip pv';v.src=f.pv;v.muted=true;v.loop=true;v.playsInline=true;v.preload='metadata';v.setAttribute('aria-hidden','true');v.disablePictureInPicture=true;cl.replaceWith(v)}else cl.remove()}if(f.img){s.style.background=`url(${f.img}) center/cover no-repeat`;s.classList.add('has-img')}a.querySelector('h3').textContent=f.t;a.querySelector('.role').textContent=`${roles(f)}, ${f.y}`;a.querySelector('.desc').textContent=f.ds||f.d;a.setAttribute('aria-label',`${f.t}, see the film`);a.addEventListener('click',e=>{e.preventDefault();openFilm(i)})});
 $('filmList').innerHTML=FILMS.map((f,i)=>`<button class="eb-row" type="button" data-i="${i}"><div class="eb-thumb media" style="filter:none;opacity:1;transform:none"><div class="still${f.img?' has-img':''}" style="background:${fbg(i)}" data-label="Film still"></div><div class="clip"></div></div><b>${f.t}</b><span>${f.y}</span><small>${roles(f)}</small></button>`).join('');
 const erows=[...document.querySelectorAll('#filmList .eb-row')],ebScr=$('ebScr');let ebCur=-1;
 function ebShow(i){if(i===ebCur)return;ebCur=i;erows.forEach((r,k)=>r.classList.toggle('on',k===i));const f=FILMS[i];ebScr.classList.add('swap');
@@ -902,9 +921,9 @@ addEventListener('keydown',e=>{if(!document.body.classList.contains('plb-open'))
 let tsx=null;plb.addEventListener('touchstart',e=>{tsx=e.touches[0].clientX},{passive:true});plb.addEventListener('touchend',e=>{if(tsx===null)return;const d=e.changedTouches[0].clientX-tsx;if(Math.abs(d)>50)showPhoto(pi+(d<0?1:-1));tsx=null});
 if(matchMedia('(hover:none)').matches){$('wvHint').textContent='Tap a photo to view it.';$('dragLbl').textContent='Swipe to see'}else $('wvHint').textContent='Hover over a photo to read about it. Click to view it.';
 
-function showView(v,name){[home,sub,about,filmsPg,setPg,photoPg,projPg].forEach(e=>e.style.display='none');document.body.classList.toggle('inner',v!=='home');aDustOn=v==='about';$('aDust').style.display=aDustOn?'block':'none';
-if(v==='home')home.style.display='block';else if(v==='about')about.style.display='block';else if(v==='films')filmsPg.style.display='block';else if(v==='set'){setPg.style.display='block';sizeBar()}else if(v==='photo'){photoPg.style.display='block';centerWall()}else if(v==='proj')projPg.style.display='block';else{sub.style.display='block';$('subTitle').textContent=name}}
-function openSub(name){titleCard(name,()=>showView(name==='About me'?'about':name==='Short films'?'films':name==='Set design & costuming'?'set':name==='Advertising, fashion & creative'?'photo':'sub',name))}
+function showView(v,name){[home,sub,about,filmsPg,setPg,photoPg,projPg,$('writePg')].forEach(e=>e.style.display='none');document.body.classList.toggle('inner',v!=='home');aDustOn=v==='about';$('aDust').style.display=aDustOn?'block':'none';
+if(v==='home')home.style.display='block';else if(v==='about')about.style.display='block';else if(v==='films')filmsPg.style.display='block';else if(v==='set'){setPg.style.display='block';sizeBar()}else if(v==='photo'){photoPg.style.display='block';centerWall()}else if(v==='proj')projPg.style.display='block';else if(v==='write'){$('writePg').style.display='block';const f=$('wIf');if(!f.src)f.src=f.dataset.src}else{sub.style.display='block';$('subTitle').textContent=name}}
+function openSub(name){titleCard(name,()=>showView(name==='About me'?'about':name==='Short films'?'films':name==='Set design & costuming'?'set':name==='Advertising, fashion & creative'?'photo':name==='Writing & journalism'?'write':'sub',name))}
 document.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openSub(a.dataset.go.replace('&amp;','&'))}));
 const goHome=()=>titleCard('Home',()=>showView('home'));
 $('back').addEventListener('click',goHome);$('logo').addEventListener('click',goHome);
