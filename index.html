@@ -899,8 +899,8 @@ const PHOTOS=[
 {src:'img/ph2.jpg',w:1920,h:1400,t:'Carried',c:'Advertising',y:'2026',d:'A product shot of a mint leather city bag held mid-air on a seamless white backdrop, for Barley20, the UOWD magazine.'},
 {src:'img/ph3.jpg',w:1494,h:2000,t:'The Updo',c:'Beauty and hair',y:'2026',d:'A profile portrait focused on a loose sculpted bun and the corded detailing of a military-style jacket, for Barley20.'},
 {src:'img/ph4.jpg',w:1494,h:2000,t:'All White',c:'Fashion',y:'2026',d:'A full-length editorial in a braided military jacket and white straight-leg denim, shot for Barley20, the UOWD magazine.'},
-{src:'img/ph5.jpg',w:1170,h:1577,t:'Emerald, Reclined',c:'Fashion',y:'2026',d:'A black-and-white editorial with the green hosiery and heels left in colour, the model stretched across an antique writing table.'},
-{src:'img/ph6.jpg',w:1170,h:1543,t:'Emerald, Seated',c:'Fashion',y:'2026',d:'The second frame of the series, seated in profile with floor-length hair and the green kept as the only colour in the image.'}];
+{src:'img/ph5.jpg',w:1170,h:1577,t:'Heirloom Modern I',c:'Photography collection',y:'2026',d:'From Heirloom Modern, a 2026 collection pairing vintage furniture and old-world portraiture with a single modern note of emerald, the only colour left in the frame.'},
+{src:'img/ph6.jpg',w:1170,h:1543,t:'Heirloom Modern II',c:'Photography collection',y:'2026',d:'The second frame of Heirloom Modern: floor-length hair, an antique table and leopard chair, cut through by sharp green hosiery and heels.'}];
 const pgrid=$('pgrid');
 pgrid.innerHTML=PHOTOS.map((p,i)=>`<figure class="pt"><button type="button" class="pimg" data-i="${i}" aria-label="View ${p.t}, ${p.c}, ${p.y}"><img src="${p.src}" alt="${p.t}" width="${p.w}" height="${p.h}" loading="lazy" decoding="async"><span class="pov"><em>${p.c}, ${p.y}</em><b>${p.t}</b><i>${p.d}</i></span></button><figcaption><b>${p.t}</b><em>${p.c}, ${p.y}</em><i>${p.d}</i></figcaption></figure>`).join('');
 $('wvCount').textContent=PHOTOS.length+' photographs';
