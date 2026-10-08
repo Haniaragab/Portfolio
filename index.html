@@ -473,8 +473,8 @@ footer .lnk{display:inline-block;margin-top:12px;color:var(--fg);text-decoration
 @media (hover:none){.wp .wi{opacity:1;background:linear-gradient(to top,rgba(0,0,0,.7),transparent 55%)}.wp .wi i{display:none}}
 .drag{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:2;pointer-events:none;display:flex;align-items:center;gap:14px;font-size:clamp(20px,2vw,26px);color:#fff;text-shadow:0 2px 14px #000;transition:opacity .8s ease}
 .drag::before,.drag::after{content:"";width:34px;height:1px;background:#fff;opacity:.6}
-.wv.used .drag{opacity:.45}.wv.static{cursor:default}.wv.static .drag{display:none}
-@media (hover:hover){.wl:has(.wp:hover) .wp:hover,.wl .wp:hover{opacity:1;transform:scale(1.02)}}
+.wv.used .drag{opacity:.45}
+@media (hover:hover){.wl:has(.wp:hover) .wp{opacity:.35}.wl:has(.wp:hover) .wp:hover,.wl .wp:hover{opacity:1;transform:scale(1.02)}}
 .wp:focus-visible{outline:1px solid var(--fg);outline-offset:4px;opacity:1}
 .wv-hint{display:flex;justify-content:space-between;gap:20px;padding:16px var(--pad) 0;color:var(--muted);font-size:17px}
 .plb{position:fixed;inset:0;z-index:75;background:rgba(0,0,0,.95);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .5s,visibility 0s linear .5s}
@@ -644,8 +644,8 @@ body.plb-open #page{filter:blur(16px);opacity:.35}
 
 <section class="catPg" id="photoPg" aria-labelledby="phTitle">
 <div class="cat-head"><h1 id="phTitle">Advertising, fashion &amp; creative</h1><p>Campaigns, editorials, and personal work.</p></div>
-<div class="wv" id="wv"><div class="wl" id="wl"></div></div>
-<div class="wv-hint"><span id="wvHint">Drag to explore. Hover over a photo to read about it, click to view it.</span><span id="wvCount"></span></div>
+<div class="pgrid" id="pgrid"></div>
+<p class="pcount" id="wvCount"></p>
 </section>
 
 <section id="projPg" aria-labelledby="pjTitle"></section>
@@ -899,25 +899,12 @@ const PHOTOS=[
 {src:'img/ph2.jpg',w:1920,h:1400,t:'Carried',c:'Advertising',y:'2026',d:'A product shot of a mint leather city bag held mid-air on a seamless white backdrop, for Barley20, the UOWD magazine.'},
 {src:'img/ph3.jpg',w:1494,h:2000,t:'The Updo',c:'Beauty and hair',y:'2026',d:'A profile portrait focused on a loose sculpted bun and the corded detailing of a military-style jacket, for Barley20.'},
 {src:'img/ph4.jpg',w:1494,h:2000,t:'All White',c:'Fashion',y:'2026',d:'A full-length editorial in a braided military jacket and white straight-leg denim, shot for Barley20, the UOWD magazine.'}];
-const wv=$('wv'),wl=$('wl');let WW=0,WH=0;
+const pgrid=$('pgrid');
+pgrid.innerHTML=PHOTOS.map((p,i)=>`<figure class="pt"><button type="button" class="pimg" data-i="${i}" aria-label="View ${p.t}, ${p.c}, ${p.y}"><img src="${p.src}" alt="${p.t}" width="${p.w}" height="${p.h}" loading="lazy" decoding="async"><span class="pov"><em>${p.c}, ${p.y}</em><b>${p.t}</b><i>${p.d}</i></span></button><figcaption><b>${p.t}</b><em>${p.c}, ${p.y}</em><i>${p.d}</i></figcaption></figure>`).join('');
+$('wvCount').textContent=PHOTOS.length+' photographs';
 const PL=PHOTOS.map(p=>({bg:`url(${p.src}) center/contain no-repeat`,cap:p.t,sub:`${p.c}, ${p.y}`}));
-(function layout(){const sc=innerWidth<760?.62:1,H=400*sc,cols=Math.max(4,Math.ceil(PHOTOS.length/2));let x=70*sc,r=0;
-PHOTOS.forEach((p,i)=>{if(i&&i%cols===0){r++;x=(70+(r%2)*120)*sc}const h=H*(1+((i*37)%3-1)*.08),w=h*p.w/p.h,y=(50+r*(H+110)+((i*97)%70))*sc;
-const b=document.createElement('button');b.type='button';b.className='wp';b.style.cssText=`left:${x}px;top:${y}px;width:${w}px;height:${h}px;background:#151515 url(${p.src}) center/cover no-repeat`;
-b.innerHTML=`<span class="wi"><b>${p.t}</b><em>${p.c}, ${p.y}</em><i>${p.d}</i></span>`;b.setAttribute('aria-label',`${p.t}, ${p.c}, ${p.y}`);b.dataset.i=i;wl.appendChild(b);
-WW=Math.max(WW,x+w+70*sc);WH=Math.max(WH,y+h+60*sc);x+=w+(70+((i*53)%50))*sc});wl.style.width=WW+'px';wl.style.height=WH+'px';wv.style.height=Math.min(WH,innerHeight*.8)+'px'})();
-$('wvCount').textContent=PHOTOS.length+' photographs';if(matchMedia('(hover:none)').matches)$('wvHint').textContent='Swipe to explore. Tap a photo to view it.';
-let ox=0,oy=0,vx=0,vy=0,dr=false,lx,ly,moved=0,raf=0;
-const clampW=()=>{const mw=Math.min(0,wv.clientWidth-WW),mh=Math.min(0,wv.clientHeight-WH);ox=Math.max(mw,Math.min(0,ox));oy=Math.max(mh,Math.min(0,oy))};
-const apply=()=>{wl.style.transform=`translate3d(${ox}px,${oy}px,0)`};
-function centerWall(){ox=(wv.clientWidth-WW)/2;oy=(wv.clientHeight-WH)/2;clampW();apply();wv.classList.toggle('static',WW<=wv.clientWidth&&WH<=wv.clientHeight)}
-wv.addEventListener('pointerdown',e=>{if(e.button!==0)return;dr=true;moved=0;cancelAnimationFrame(raf);lx=e.clientX;ly=e.clientY;vx=vy=0});
-addEventListener('pointermove',e=>{if(!dr)return;const dx=(e.clientX-lx)*.8,dy=(e.clientY-ly)*.8;lx=e.clientX;ly=e.clientY;moved+=Math.abs(dx)+Math.abs(dy);if(moved>4){wv.classList.add('dragging','used')}ox+=dx;oy+=(e.pointerType==='touch'?0:dy);vx=dx;vy=e.pointerType==='touch'?0:dy;clampW();apply()});
-const end=()=>{if(!dr)return;dr=false;wv.classList.remove('dragging');if(reduce)return;(function glide(){vx*=.82;vy*=.82;ox+=vx;oy+=vy;clampW();apply();if(Math.abs(vx)+Math.abs(vy)>.4)raf=requestAnimationFrame(glide)})()};
-addEventListener('pointerup',end);addEventListener('pointercancel',()=>{dr=false;wv.classList.remove('dragging')});
-wl.addEventListener('click',e=>{const b=e.target.closest('.wp');if(!b)return;if(moved>6){e.preventDefault();return}openPhoto(+b.dataset.i,PL)});
-wl.addEventListener('focusin',e=>{const b=e.target.closest('.wp');if(!b)return;const r=b.getBoundingClientRect(),v=wv.getBoundingClientRect();if(r.left<v.left||r.right>v.right){ox+=(v.left+v.width/2)-(r.left+r.width/2);clampW();apply()}});
-addEventListener('resize',()=>{clampW();apply()});
+pgrid.querySelectorAll('.pimg').forEach(b=>b.onclick=()=>openPhoto(+b.dataset.i,PL));
+function centerWall(){}
 let pi=0,plbFrom=null;const plb=$('plb');
 let VL=null;function showPhoto(i){const L=VL||PHOTOS.map(p=>({bg:p.g,cap:p.c[2],sub:`${p.c[0]}, ${p.c[1]}`}));pi=(i+L.length)%L.length;const p=L[pi],im=$('plbImg');im.style.background=p.bg;im.classList.remove('fp');void im.offsetWidth;im.classList.add('fp');$('plbCap').innerHTML=`${p.cap}<small>${p.sub}</small>`;$('plbNum').textContent=`${pi+1} of ${L.length}`}
 function openPhoto(i,list){VL=list||null;plbFrom=document.activeElement;showPhoto(i);document.body.classList.add('plb-open');plb.setAttribute('aria-hidden','false');setTimeout(()=>$('plbX').focus(),100)}
