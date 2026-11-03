@@ -512,8 +512,9 @@ body.plb-open #page{filter:blur(16px);opacity:.35}
 <nav aria-label="Main">
 <p class="mg mi">Film</p>
 <a class="mi" href="#short-films" data-go="Short films">Short films</a>
-<p class="mg mi">Photography &amp; words</p>
-<a class="mi" href="#photography" data-go="Advertising, fashion &amp; creative">Advertising, fashion &amp; creative</a>
+<p class="mg mi">Visual marketing</p>
+<a class="mi" href="#commercial" data-go="Commercial videos &amp; photography">Commercial videos &amp; photography</a>
+<p class="mg mi">Writing</p>
 <a class="mi" href="#writing" data-go="Writing &amp; journalism">Writing &amp; journalism</a>
 <a class="mi ab" href="#about" data-go="About me">About me</a>
 </nav>
@@ -644,7 +645,7 @@ body.plb-open #page{filter:blur(16px);opacity:.35}
 </section>
 
 <section class="catPg" id="photoPg" aria-labelledby="phTitle">
-<div class="cat-head"><h1 id="phTitle">Advertising, fashion &amp; creative</h1><p>Campaigns, editorials, and personal work.</p></div>
+<div class="cat-head"><h1 id="phTitle">Commercial videos &amp; photography</h1><p>Campaigns, editorials, and personal work.</p></div>
 <div class="pcols" id="pcols"></div>
 <div class="pcol" id="pcol" hidden>
 <button type="button" class="pj-back" id="pcBack">All collections</button>
@@ -937,7 +938,7 @@ let tsx=null;plb.addEventListener('touchstart',e=>{tsx=e.touches[0].clientX},{pa
 
 function showView(v,name){[home,sub,about,filmsPg,setPg,photoPg,projPg,$('writePg')].forEach(e=>e.style.display='none');document.body.classList.toggle('inner',v!=='home');aDustOn=v==='about';$('aDust').style.display=aDustOn?'block':'none';
 if(v==='home')home.style.display='block';else if(v==='about')about.style.display='block';else if(v==='films')filmsPg.style.display='block';else if(v==='set'){setPg.style.display='block';sizeBar()}else if(v==='photo'){photoPg.style.display='block';closeCol();centerWall()}else if(v==='proj')projPg.style.display='block';else if(v==='write'){$('writePg').style.display='block';$('cwCov').onclick=()=>openPhoto(0,[{bg:'url('+getComputedStyle($('cwCov')).backgroundImage.slice(5,-2)+') center/contain no-repeat',cap:'Common World',sub:'Between Faith and Freedom, cover'}]);}else{sub.style.display='block';$('subTitle').textContent=name}}
-function openSub(name){titleCard(name,()=>showView(name==='About me'?'about':name==='Short films'?'films':name==='Set design & costuming'?'set':name==='Advertising, fashion & creative'?'photo':name==='Writing & journalism'?'write':'sub',name))}
+function openSub(name){titleCard(name,()=>showView(name==='About me'?'about':name==='Short films'?'films':name==='Set design & costuming'?'set':name==='Commercial videos & photography'?'photo':name==='Writing & journalism'?'write':'sub',name))}
 document.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();openSub(a.dataset.go.replace('&amp;','&'))}));
 const goHome=()=>titleCard('Home',()=>showView('home'));
 $('back').addEventListener('click',goHome);$('logo').addEventListener('click',goHome);
