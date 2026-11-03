@@ -915,7 +915,7 @@ const PHOTOS=[
 {src:'img/ph10.jpg',w:1600,h:1067,t:'Reach',c:'Beauty',y:'2026',d:'A wide companion to Entwined: the blue lipstick raised into open cobalt space, a copper braid winding from wrist to shoulder.'}];
 const COLS=[
 {t:'Barley20 Studio',m:'Editorial and product photography, 2026',d:'A studio shoot for Barley20, the University of Wollongong in Dubai magazine. Soft pastels and clean white backdrops across fashion, beauty and product, built around texture, posture and a quiet, polished palette.',ix:[0,1,2,3]},
-{t:'Vintage Fantasy',m:'Concept photography, 2026',d:'A series of concept images where old-world settings meet a single bold colour. Antique furniture and floor-length hair are cut through with emerald in Heirloom Modern, while copper braids, a corn snake and cobalt make-up build a darker, dreamlike fantasy.',ix:[4,5,6,7,8,9]}];
+{t:'Colour Me Strange',m:'Concept photography, 2026',d:'A series of concept images where old-world settings meet a single bold colour. Antique furniture and floor-length hair are cut through with emerald in Heirloom Modern, while copper braids, a corn snake and cobalt make-up build a darker, dreamlike fantasy.',ix:[4,5,6,7,8,9]}];
 const pgrid=$('pgrid'),pcols=$('pcols');
 pcols.innerHTML=COLS.map((c,k)=>{const sh=c.ix.slice(0,4);return `<button type="button" class="pile" data-k="${k}" aria-label="Open the ${c.t} collection, ${c.ix.length} photographs"><span class="pstack">${sh.map((i,n)=>{const p=PHOTOS[i];return `<span class="pc" style="--n:${n};--c:${sh.length};--ar:${(p.w/p.h).toFixed(3)}"><img src="${p.src}" alt="" loading="lazy" decoding="async"></span>`}).join('')}</span><span class="pinfo"><em>${c.m}</em><b>${c.t}</b><i>${c.ix.length} photographs</i></span></button>`}).join('');
 let PL=[];
